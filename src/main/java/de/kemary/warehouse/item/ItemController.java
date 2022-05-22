@@ -19,11 +19,11 @@ public class ItemController {
     }
 
     @PostMapping
-    public void postItem(@RequestBody Item item){
-        if(itemRepository.findItemByNameAndFracturedBy(item.getName(), item.getFracturedBy()).isPresent()) {
+    public void postItem(@RequestBody Item item) {
+        if (itemRepository.findItemByNameAndFracturedBy(item.getName(), item.getFracturedBy()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
-        var newItem = new Item(item.getName(), item.getType(), item.getFracturedBy(), item.getBoughtAt(), item.getExpiresOn(), item.getBarcode());
+        var newItem = new Item(item.getName(), item.getType(), item.getFracturedBy(), item.getBarcode());
         itemRepository.save(newItem);
     }
 }

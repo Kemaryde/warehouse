@@ -2,6 +2,7 @@ package de.kemary.warehouse.item;
 
 import de.kemary.warehouse.Type;
 import lombok.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.Entity;
@@ -21,16 +22,12 @@ public class Item {
     private String fracturedBy;
     private String name;
     private Type type;
-    private LocalDate boughtAt;
-    private LocalDate expiresOn;
     private Long barcode;
 
-    public Item(String name, Type type, String fracturedBy, LocalDate boughtAt, LocalDate expiresOn, Long barcode) {
+    public Item(String name, Type type, String fracturedBy, Long barcode) {
         this.fracturedBy = fracturedBy;
         this.name = name;
         this.type = type;
-        this.boughtAt = boughtAt;
-        this.expiresOn = expiresOn;
         this.barcode = barcode;
     }
 }
