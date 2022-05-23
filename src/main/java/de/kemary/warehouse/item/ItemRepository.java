@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface ItemRepository extends JpaRepository<Item, Long> {
     Optional<Item> findItemByNameAndFracturedBy (String name, String fracturedBy);
     Optional<Item> findAllByName (String name);
+    Optional<Item> findByBarcode (Long barcode);
 }

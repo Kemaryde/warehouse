@@ -2,14 +2,12 @@ package de.kemary.warehouse.item;
 
 import de.kemary.warehouse.Type;
 import lombok.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Table
 @AllArgsConstructor
@@ -23,11 +21,13 @@ public class Item {
     private String name;
     private Type type;
     private Long barcode;
+    private String imageURL;
 
-    public Item(String name, Type type, String fracturedBy, Long barcode) {
+    public Item(String name, Type type, String fracturedBy, Long barcode, String imageURL) {
         this.fracturedBy = fracturedBy;
         this.name = name;
         this.type = type;
         this.barcode = barcode;
+        this.imageURL = imageURL;
     }
 }

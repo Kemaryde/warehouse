@@ -1,6 +1,7 @@
 package de.kemary.warehouse.storage;
 
 import de.kemary.warehouse.item.Item;
+import de.kemary.warehouse.location.Location;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,11 +26,14 @@ public class Storage {
     private LocalDate boughtAt;
     private LocalDate expiresOn;
     private Integer count;
+    @ManyToOne
+    private Location location;
 
-    public Storage(Item item, LocalDate boughtAt, LocalDate expiresOn, Integer count) {
+    public Storage(Item item, LocalDate boughtAt, LocalDate expiresOn, Integer count, Location location) {
         this.item = item;
         this.boughtAt = boughtAt;
         this.expiresOn = expiresOn;
         this.count = count;
+        this.location = location;
     }
 }

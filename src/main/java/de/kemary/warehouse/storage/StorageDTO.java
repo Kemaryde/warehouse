@@ -13,6 +13,8 @@ public class StorageDTO {
     private Long id;
     private Item item;
     private String itemName;
+    private Long barcode;
+    private String location;
     private LocalDate boughtAt;
     private LocalDate expiresOn;
     private Integer count;
