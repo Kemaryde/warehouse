@@ -15,6 +15,16 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
+  warehouse:
+    image: registry.jlosch.de/kemary.de/warehouse:alpha-0.1
+    environment:
+      - SPRING_JPA_HIBERNATE_DDL-AUTO=update
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/warehouse?useSSL=false&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_DRIVERCLASSNAME=com.mysql.cj.jdbc.Driver
+    ports:
+      - "8080:8080"
 # Names our volume
 volumes:
   my-db:
