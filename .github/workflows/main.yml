@@ -25,10 +25,10 @@ jobs:
         uses: rlespinasse/github-slug-action@v3.x
         
       - name: Build the Docker image at ${{github.GITHUB_REPOSITORY }}
-        run: docker build . --file Dockerfile --tag registry.jlosch.de/kemary.de/warehouse:latest
+        run: docker build . --file Dockerfile --build-arg SPRING_DATASOURCE_USERNAME=${{env.SPRING_DATASOURCE_USERNAME}} --build-arg SPRING_DATASOURCE_USERNAME=${{env.DATASOURCE_USERNAME}} --build-arg SPRING_DATASOURCE_PASSWORD=${{env.DATASOURCE_PASSWORD}} --tag registry.jlosch.de/kemary.de/warehouse:latest
         
       - name: Build the Docker image at ${{github.GITHUB_REPOSITORY }}
-        run: docker build . --file Dockerfile --tag registry.jlosch.de/kemary.de/warehouse:${GITHUB_REF_NAME}
+        run: docker build . --file Dockerfile --build-arg SPRING_DATASOURCE_USERNAME=${{env.SPRING_DATASOURCE_USERNAME}} --build-arg SPRING_DATASOURCE_USERNAME=${{env.DATASOURCE_USERNAME}} --build-arg SPRING_DATASOURCE_PASSWORD=${{env.DATASOURCE_PASSWORD}} --tag registry.jlosch.de/kemary.de/warehouse:${GITHUB_REF_NAME}
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
