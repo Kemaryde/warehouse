@@ -2,8 +2,7 @@ name: Docker main
 
 on:
   push:
-    #- dev
-    - main
+    branches: [ "main" ]
 
 
 jobs:
