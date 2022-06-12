@@ -19,9 +19,6 @@ jobs:
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag registry.jlosch.de/kemary.de/warehouse:latest
         
-      - name: Build the Docker image at ${{ github.GITHUB_REPOSITORY }}
-        run: docker build . --file Dockerfile --tag registry.jlosch.de/kemary.de/warehouse:${{ env.GITHUB_REF_NAME }}
-
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
@@ -29,13 +26,6 @@ jobs:
           username: ${{ secrets.REGISTRY_NAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
           name: registry.jlosch.de/kemary.de/warehouse:latest
-      - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
-        with:
-          registry: https://registry.jlosch.de
-          username: ${{ secrets.REGISTRY_NAME }}
-          password: ${{ secrets.REGISTRY_TOKEN }}
-          name: registry.jlosch.de/kemary.de/warehouse:${{ env.GITHUB_REF_NAME }}
   
   build_branch:
 
