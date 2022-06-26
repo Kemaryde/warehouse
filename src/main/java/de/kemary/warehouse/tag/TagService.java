@@ -27,10 +27,13 @@ public class TagService {
     public List<Tag> getTagsAsList(String tagString, TagRepository tagRepository){
         List<Tag> tagList = new ArrayList<>();
         if(tagString.length() == 0){
-            tagList.add(tagRepository.findById(Long.getLong(tagString)).get());
+            var tag = tagRepository.findById(Long.getLong(tagString));
+            if(tag.isEmpty())
+                return tagList;
+            tagList.add(tag.get());
         }else {
             int i = 0;
-            while (tagString.replaceAll(",", "").length()-1 != i) {
+            while (tagString.length()-1 > i) {
                 tagRepository.findById(Long.valueOf(Arrays.stream(tagString.split(",")).toList().get(i))).ifPresent(tagList::add);
                 i++;
             }
