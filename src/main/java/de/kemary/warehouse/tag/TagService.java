@@ -14,9 +14,6 @@ public class TagService {
         if(tagList == null){
             return "";
         }
-        if(!(tagList.size() > 0)){
-            returnString = tagList.get(0).getId().toString();
-        }
         while(tagList.size() > i){
             if(returnString == null) {
                 returnString = tagList.get(i).getId().toString();
@@ -33,7 +30,7 @@ public class TagService {
             tagList.add(tagRepository.findById(Long.getLong(tagString)).get());
         }else {
             int i = 0;
-            while (tagString.replaceAll(",", "").length()-1 >= i) {
+            while (tagString.replaceAll(",", "").length()-1 != i) {
                 tagRepository.findById(Long.valueOf(Arrays.stream(tagString.split(",")).toList().get(i))).ifPresent(tagList::add);
                 i++;
             }

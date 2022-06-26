@@ -32,8 +32,8 @@ public class ItemController {
     @GetMapping
     public List<ItemDTO> getItems(@RequestParam(required = false)String tagsAsList){
         List<ItemDTO> returnItems = new ArrayList<>();
+        int i = 0;
         if(tagsAsList != null){
-            int i = 0;
             var allItems = itemRepository.findAll();
             while (allItems.size() != i){
                 var item = allItems.get(i);
@@ -50,10 +50,9 @@ public class ItemController {
                 i++;
             }
         }else {
-            int i = 0;
             var allItems = itemRepository.findAll();
-            while (allItems.size() >= i) {
-                var item = allItems.get(0);
+            while (allItems.size() != i) {
+                var item = allItems.get(i);
                 var returnItem = new ItemDTO();
                 returnItem.setBarcode(item.getBarcode());
                 returnItem.setFracturedBy(item.getFracturedBy());
