@@ -32,7 +32,7 @@ public class ItemController {
     @GetMapping
     public List<ItemDTO> getItems(@RequestParam(required = false)String tagsAsList){
         List<ItemDTO> returnItems = new ArrayList<>();
-        int i = 0;
+        int i = 1;
         if(tagsAsList != null){
             var allItems = itemRepository.findAll();
             while (allItems.size() != i){
