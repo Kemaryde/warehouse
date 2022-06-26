@@ -14,7 +14,7 @@ public class TagService {
         if(tagList == null){
             return "";
         }
-        while(tagList.size() > i){
+        while(tagList.size() != i){
             if(returnString == null) {
                 returnString = tagList.get(i).getId().toString();
             }else {
