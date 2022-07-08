@@ -78,7 +78,7 @@ public class StorageController {
         if(locationRepository.findByName(storageDTO.getLocation()).isEmpty()){
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Location is not known");
         }
-        var storageInv = storageRepository.findByItem(item.get());
+        var storageInv = storageRepository.findByItemId(item.get().getId());
         if(storageInv.isPresent()){
             if(Objects.equals(storageInv.get().getLocation().getName(), storageDTO.getLocation())){
                 storageInv.get().setCount(storageInv.get().getCount() + storageDTO.getCount());

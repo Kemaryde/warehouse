@@ -11,6 +11,7 @@ import java.util.Optional;
 @Repository
 public interface StorageRepository extends JpaRepository<Storage, Long> {
     Optional<Storage> findByItem(Item item);
+    Optional<Storage> findByItemId(Long itemId);
     List<Storage> findAllByItem(Item item);
     List<Storage> findAllByLocation(Location location);
 }
