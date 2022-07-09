@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -45,6 +44,9 @@ public class StorageController {
     }
     @GetMapping(path = "/item-count")
     public Integer getStorageItemCount(@RequestParam Long itemID){
+        if(itemID == null){
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "ItemID is undefined");
+        }
         var item = itemRepository.findById(itemID);
         if(item.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
