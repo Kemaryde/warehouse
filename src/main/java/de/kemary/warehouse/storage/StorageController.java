@@ -78,13 +78,16 @@ public class StorageController {
         if(locationRepository.findByName(storageDTO.getLocation()).isEmpty()){
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Location is not known");
         }
-        var storageInv = storageRepository.findByItemId(item.get().getId());
-        if(storageInv.isPresent()){
-            if(Objects.equals(storageInv.get().getLocation().getName(), storageDTO.getLocation())){
-                storageInv.get().setCount(storageInv.get().getCount() + storageDTO.getCount());
-                storageRepository.save(storageInv.get());
+        var storageInvList = storageRepository.findAllByItem(item.get());
+        Storage storageInv;
+        if(storageInvList.size() == 1){
+            storageInv = storageInvList.get(0);
+            if(Objects.equals(storageInv.getLocation().getName(), storageDTO.getLocation())){
+                storageInv.setCount(storageInv.getCount() + storageDTO.getCount());
+                storageRepository.save(storageInv);
                 return;
             }
+        }else{
             var storage = new Storage(item.get(), storageDTO.getBoughtAt(),storageDTO.getExpiresOn(), storageDTO.getCount(), locationRepository.findByName(storageDTO.getLocation()).get());
             storageRepository.save(storage);
             return;
